@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommendation</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+
+    <style type="text/css">
+        #bg-image {
+            opacity: 0.8;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+            color: #6a8caf;
+        }
+
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            background-image: url("{% static 'web/images/background.jpg' %}");
+            background-repeat: no-repeat;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" id="bg-image">
+    <div class="text-center mt-3">
+        <img src="{% static 'web/images/tdmu.png' %}" class="img-rounded" width="200px" height="200px" alt="">
+    </div>
+    <div class="text-center mx-auto mt-3"><h2 class="text-white">ĐẠI HỌC THỦ DẦU MỘT</h2></div>
+    <div class="text-center"><h2 class="text-white">KHOA KỸ THUẬT - CÔNG NGHỆ</h2></div>
+    <div class="text-center ">
+        <hr class="border-top" style="width: 60%">
+    </div>
+    <div class="text-center mt-lg-4">
+        <h3 class="text-white ">
+            HỆ THỐNG KHUYẾN NGHỊ XEM PHIM
+        </h3>
+        <div style="height: 30px;"></div>
+        <h3 class="text-white mt-3">
+            Học Viên: NGUYỄN VĂN TÂY </h3>
+        <h3 class="text-white">Người Hướng Dẫn: TS. BÙI THANH HÙNG</h3>
+    </div>
+    <div style="margin-top: 80px"></div>
+    <div class="row text-center mt-lg-5 mb-lg-5 text-white">
+        <div class="col-md-4">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <a href="{% url 'listMovies' %}">
+                            <i class="fa fa-film fa-4x text-white" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col mt-2">
+                        <h5>Movies Recommendation System</h5>
+                    </div>
+                    <div class="col"><p>Demo ứng dụng</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <a href="{% url 'statistics' %}">
+                        <i class="fa fa-bar-chart fa-4x text-white" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col mt-2">
+                    <h5>Phân tích dữ liệu</h5>
+                </div>
+                <div class="col"><p>Bảng phân tích dữ liệu</p></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <a href="{% url 'evaluation' %}">
+                        <i class="fa fa-file fa-4x text-white" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col mt-2"><h5>Đánh giá kết quả</h5></div>
+                <div class="col"><p>Mô hình đánh giá kết quả</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-light text-center">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    <a href="#">Nguyễn Văn Tây</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

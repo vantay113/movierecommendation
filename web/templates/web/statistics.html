@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommendation</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+
+    <style type="text/css">
+        #bg-image {
+            opacity: 0.8;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+            color: #6a8caf;
+        }
+
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            background-image: url("{% static 'web/images/background.jpg' %}");
+            background-repeat: no-repeat;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" id="bg-image">
+    <div class="text-center mx-auto mt-lg-5"><h2 class="text-white">PHÂN TÍCH DỮ LIỆU</h2></div>
+    <div class="text-center ">
+        <hr class="border-top" style="width:60%">
+    </div>
+    <div style="margin-top: 80px"></div>
+    <div class="row text-center mb-lg-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title ">Dữ liệu dùng để Train/Test </h5>
+                    <table class="table table-bordered text-center ">
+                        <tbody>
+                        <tr>
+
+                            <td class="font-weight-bold">Number of training rates (ml-100k/ub.base):</td>
+                            <td>90570</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Number of test rates: (ml-100k/ub.test):</td>
+                            <td>9430</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title ">Dữ liệu sử dụng trong demo:</h5>
+                    <table class="table table-bordered text-center ">
+                        <tbody>
+                        <tr>
+                            <td class="font-weight-bold">Number of users: </td>
+                            <td> {{ num_users }}  users</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Number of movies:</td>
+                            <td>{{ num_movies }} movies</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Number of ratings:</td>
+                            <td>{{ num_rated }} ratings</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tỉ lệ huấn luyện dữ liệu</h5>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-light text-center">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    <a href="#">Nguyễn Văn Tây</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Number of training rates', 'number of test rates',],
+            datasets: [{
+                data: [90, 10],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}Recommendations{% endblock %}
+{% block body %}
+    <div class="container-fluid mt-lg-5">
+        <h4 class="text-center text-primary text-capitalize font-weight-bold">we recommend movies based on movie's similarity </h4>
+    </div>
+    <div class="container-fluid mt-lg-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {% if messages %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        {% for message in messages %}
+                            <strong>{{ message }}</strong>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Movie list -->
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md-10" style="border-left: 1px solid #FDFDFD">
+                <!-- Movie list -->
+                <div class="row">
+                    {% if items %}
+                        {% for list_average,movie_list in items %}
+                            <div class="col-sm-2 col-md-3 mb-lg-3">
+                                <div class="card">
+                                    <table class="table table-borderless">
+                                        <tbody class="text-center">
+                                        <tr>
+                                            <td>
+                                                <p class="text-center text-truncate text-nowrap" style="width:14em">{{ movie_list.title }}</p>
+                                                <a href="{% url 'detail' movie_list.id %}">
+                                                    <img src="{{ movie_list.movie_logo.url }}"
+                                                         class=" text-center img-fluid">
+                                                </a>
+                                                <p class="text-center text-sm-center mt-2 mb-3">{{ movie_list.genre }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="position: relative">
+                                                <div style="width: calc(10% * {{ list_average }});background-color:gold; top:0;left: 70px; position: absolute;height:25px; z-index:100"></div>
+                                                <img src="{% static 'web/images/stars.png' %}"
+                                                     alt="{{ list_average }}" title="{{ list_average }}"
+                                                     style="position: absolute; top: 0; left: 70px;width:50%; z-index: 110">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="caption text-center">
+                                                    <!-- View Details -->
+                                                    <a href="{% url 'detail' movie_list.id %}"
+                                                       class="btn btn-primary btn-sm"
+                                                       role="button">Give
+                                                        Rating</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+{% endblock %}

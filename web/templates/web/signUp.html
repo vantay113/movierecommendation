@@ -1,0 +1,29 @@
+{% extends 'web/base.html'%}
+{% block title %}Register{% endblock %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register for an Account</h5>
+                    {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'web/form_template.html' %}
+                        <button type="submit" class="btn  btn-block btn-success text-uppercase">Register</button>
+                    </form>
+                    <br class="py-5">
+                    <div class="panel-footer text-center">
+                        Already have an account? <a href="{% url 'login' %}">Click here</a> to log in.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
